@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include bdoop *.css
+recursive-include bdoop *.csv
+recursive-include bdoop *.html
+recursive-include bdoop *.ico
+recursive-include bdoop *.js
+recursive-include bdoop *.json
+recursive-include bdoop *.md
+recursive-include bdoop *.png
+recursive-include bdoop *.py
+recursive-include bdoop *.svg
+recursive-include bdoop *.txt
+recursive-exclude bdoop *.pyc

@@ -1,0 +1,11 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Purchase Invoice", 
+  "modified": "2017-08-27 00:45:35.763771", 
+  "name": "Purchase Invoice-Client", 
+  "script": "//$('[data-fieldname=\"posting_yymm\"]').hide();\n\nfrappe.ui.form.on(\"Purchase Invoice\", {\n  onload:  function(frm) {\n\tposting_yymm(frm);\n  },\n  posting_date: function(frm) {\n\tposting_yymm(frm);\n  },\n\n\npurchase_order: function(frm, cdt, cdn){\nfrappe.model.set_value(cdt, cdn, \"sales_order\",null);\n\t\t\tfrappe.model.set_value(cdt, cdn, \"customer\",null);\n\t\tvar item = frappe.model.get_doc(cdt, cdn);\n\t\tvar purchase_order_name = item.purchase_order;\nfrappe.call({\n\tmethod: \"frappe.client.get\",\n\targs: {\n\t\tdoctype: \"Purchase Order\",\n\t\tname: purchase_order_name,\n\t},\n\tcallback(r) {\n\t\tif(r.message) {\n\t\t\tvar purchase_order = r.message;\n\t\t\tfrappe.model.set_value(cdt, cdn, \"sales_order\",purchase_order.sales_order);\n\t\t}\n\t}\n});\n\n\t\t\n\n\t\t\n\t},\nsales_order: function(frm, cdt, cdn){\n\t\tvar item = frappe.model.get_doc(cdt, cdn);\n\t\tvar sales_order_name = item.sales_order;\nfrappe.call({\n\tmethod: \"frappe.client.get\",\n\targs: {\n\t\tdoctype: \"Sales Order\",\n\t\tname: sales_order_name,\n\t},\n\tcallback(r) {\n\t\tif(r.message) {\n\t\t\tvar sales_order = r.message;\n\t\t\tfrappe.model.set_value(cdt, cdn, \"customer\",sales_order.customer);\n\t\t\tconsole.log(sales_order);\n\t\t}\n\t}\n});\n\t},\n});\nvar posting_yymm = function(frm){\n\tvar ymd = frm.doc.posting_date;\n\tvar yy = ymd.substring(2,4);\n\tvar mm = ymd.substring(5,7);\n\tvar ym = yy+\"\"+mm;\n\tfrm.set_value(\"posting_yymm\", ym);\n}\n\nfrappe.ui.form.on(\"Purchase Invoice\", \"validate\", function(frm) {\n\tposting_yymm(frm);\n})", 
+  "script_type": "Client"
+ }
+]
