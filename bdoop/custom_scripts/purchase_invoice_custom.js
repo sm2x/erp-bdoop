@@ -8,19 +8,29 @@ var posting_yymm = function(frm){
 	frm.set_value("posting_yymm", ym);
 }
 
+cur_frm.add_fetch('purchase_order','sales_order','sales_order');
+cur_frm.add_fetch('sales_order','customer','customer');
+cur_frm.add_fetch('customer','customer_name','customer_name');
+
 frappe.ui.form.on("Purchase Invoice", "validate", function(frm) {
 	posting_yymm(frm);
 })
 
 frappe.ui.form.on("Purchase Invoice", {
     onload:  function(frm) {
-        loadSalesOrder(frm);
+        var purchase_order_name = frm.doc.purchase_order;
+        if(purchase_order_name){
+            cur_frm.get_field("purchase_order").validate(cur_frm.doc.purchase_order);
+        }
     },
     purchase_order: function(frm, cdt, cdn){
-        loadSalesOrder(frm);
+        cur_frm.get_field("purchase_order").validate(cur_frm.doc.purchase_order);
     },
     sales_order: function(frm, cdt, cdn){
-        loadCustomer(frm);
+        cur_frm.get_field("sales_order").validate(cur_frm.doc.sales_order);
+    },
+    customer: function(frm, cdt, cdn){
+        cur_frm.get_field("customer").validate(cur_frm.doc.customer);
     },
 });
 
@@ -57,6 +67,7 @@ var loadCustomer = function(frm){
                 if(r.message) {
                     var sales_order = r.message;
                     cur_frm.set_value('customer', sales_order.customer);
+                    cur_frm.get_field("customer").validate(cur_frm.doc.customer);
                 }
             }
         });
