@@ -9,8 +9,6 @@ var posting_yymm = function(frm){
 }
 
 cur_frm.add_fetch('purchase_order','sales_order','sales_order');
-cur_frm.add_fetch('sales_order','customer','customer');
-cur_frm.add_fetch('customer','customer_name','customer_name');
 
 frappe.ui.form.on("Purchase Invoice", "validate", function(frm) {
 	posting_yymm(frm);
@@ -25,13 +23,7 @@ frappe.ui.form.on("Purchase Invoice", {
     },
     purchase_order: function(frm, cdt, cdn){
         cur_frm.get_field("purchase_order").validate(cur_frm.doc.purchase_order);
-    },
-    sales_order: function(frm, cdt, cdn){
-        cur_frm.get_field("sales_order").validate(cur_frm.doc.sales_order);
-    },
-    customer: function(frm, cdt, cdn){
-        cur_frm.get_field("customer").validate(cur_frm.doc.customer);
-    },
+    }
 });
 
 var loadSalesOrder = function(frm){
