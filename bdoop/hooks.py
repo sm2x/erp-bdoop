@@ -12,7 +12,10 @@ app_email = "vinhbk2000@gmail.com"
 app_license = "MIT"
 
 doctype_js = {
-    "Purchase Invoice": "custom_scripts/purchase_invoice_custom.js"
+    "Journal Entry": "custom_scripts/journal_entry_custom.js",
+    "Payment Entry": "custom_scripts/payment_entry_custom.js",
+    "Purchase Invoice": "custom_scripts/purchase_invoice_custom.js",
+    "Sales Order": "custom_scripts/sales_order_custom.js"
 }
 
 fixtures = [
