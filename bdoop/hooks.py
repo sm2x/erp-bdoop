@@ -29,6 +29,11 @@ fixtures = [
     "Print Format"
 ]
 
+website_context = {
+	"favicon": 	"/assets/bdtheme/images/bp-ico-32.png",
+	"splash_image": "/assets/bdtheme/images/logo_bdoop.png"
+}
+
 # Includes in <head>
 # ------------------
 

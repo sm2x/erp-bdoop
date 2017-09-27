@@ -1,6 +1,7 @@
 frappe.ui.form.on("Sales Order", {
     onload:  function(frm) {
-        setDeliveryDate(frm);
+        if(frm.doc.delivery_date=='' || frm.doc.delivery_date == undefined)
+            setDeliveryDate(frm);
     },
     transaction_date: function(frm, cdt, cdn){
         setDeliveryDate(frm);
