@@ -34,6 +34,17 @@ website_context = {
 	"splash_image": "/assets/bdtheme/images/logo_bdoop.png"
 }
 
+email_brand_image = "assets/bdtheme/images/logo_bdoop.png"
+
+default_mail_footer = """
+	<span>
+		Sent via
+		<a class="text-muted" href="https://bdoop.com" target="_blank">
+			Bdoop Erp
+		</a>
+	</span>
+"""
+
 # Includes in <head>
 # ------------------
 
