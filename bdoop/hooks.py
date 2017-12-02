@@ -15,7 +15,8 @@ doctype_js = {
     "Journal Entry": "custom_scripts/journal_entry_custom.js",
     "Payment Entry": "custom_scripts/payment_entry_custom.js",
     "Purchase Invoice": "custom_scripts/purchase_invoice_custom.js",
-    "Sales Order": "custom_scripts/sales_order_custom.js"
+    "Sales Order": "custom_scripts/sales_order_custom.js",
+    "Item": "custom_scripts/item_custom.js"
 }
 
 fixtures = [
